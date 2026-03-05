@@ -764,6 +764,39 @@
             padding: 0;
         }
     </style>
+
+    <style>
+        /* Native Entry Animations */
+        .estado-inicial {
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .animar-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        .animar-left {
+            animation: slideLeft 0.8s ease-out forwards;
+        }
+    </style>
 </head>
 
 <body
@@ -821,7 +854,7 @@
                         <div class="elementor-element elementor-element-7aee3b8a elementor-widget-mobile__width-inherit elementor-widget elementor-widget-image"
                             data-id="7aee3b8a" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
-                                <img width="1024" height="576"
+                                <img data-animacao="animar-up" class="observar-animacao estado-inicial" width="1024" height="576"
                                     src="./wp-content/uploads/2025/06/PodCast-Tatico-2048-x-1152-px.png"
                                     class="attachment-large size-large wp-image-12" alt="" />
                             </div>
@@ -850,7 +883,7 @@
                             data-id="30fecfc1" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <a href="https://www.youtube.com/@podcast.tatico">
-                                    <img width="768" height="384"
+                                    <img data-animacao="animar-left" class="observar-animacao estado-inicial" width="768" height="384"
                                         src="./wp-content/uploads/2025/06/podcast.tatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-14" alt="" /> </a>
                             </div>
@@ -878,7 +911,7 @@
                             data-id="3145e676" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <a href="https://www.instagram.com/podcast_tatico/">
-                                    <img width="768" height="384"
+                                    <img data-animacao="animar-left" class="observar-animacao estado-inicial" width="768" height="384"
                                         src="./wp-content/uploads/2025/06/@podcast-tatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-15" alt="" /> </a>
                             </div>
@@ -906,7 +939,7 @@
                             data-id="4161352d" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <a href="https://www.tiktok.com/@podcasttatico">
-                                    <img width="768" height="384"
+                                    <img data-animacao="animar-left" class="observar-animacao estado-inicial" width="768" height="384"
                                         src="./wp-content/uploads/2025/06/podcasttatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-16" alt="" /> </a>
                             </div>
@@ -982,7 +1015,7 @@
                             data-id="39200fe6" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
                                 <a href="https://www.deezer.com/br/show/1001768901">
-                                    <img width="768" height="384"
+                                    <img data-animacao="animar-left" class="observar-animacao estado-inicial" width="768" height="384"
                                         src="./wp-content/uploads/2025/06/@podcast.tatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-18" alt="" /> </a>
                             </div>
@@ -992,7 +1025,7 @@
                             <div class="elementor-widget-container">
                                 <a
                                     href="https://youtube.com/playlist?list=PLiOS0z_v86zFm-aF4f_3iwR-Jm4EiGh54&si=5yYL8D82OHBv7urV">
-                                    <img width="768" height="384"
+                                    <img data-animacao="animar-left" class="observar-animacao estado-inicial" width="768" height="384"
                                         src="./wp-content/uploads/2025/06/@podcasttatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-19" alt="" /> </a>
                             </div>
@@ -1166,6 +1199,27 @@
                     observer.observe(el);
                 }
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerCustom = new IntersectionObserver((entries, observerObj) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const animacao = el.getAttribute('data-animacao');
+                        if (animacao) {
+                            el.classList.remove('estado-inicial');
+                            el.classList.add(animacao);
+                            observerObj.unobserve(el);
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const elementosAnimar = document.querySelectorAll('.observar-animacao');
+            elementosAnimar.forEach(el => observerCustom.observe(el));
         });
     </script>
 </body>
