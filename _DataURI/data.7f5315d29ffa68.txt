@@ -1,0 +1,1 @@
+chrome-extension://kejbdjndbnbjgmefkgdddjlbokphdefk/api/tag_assistant_api_bin.js
