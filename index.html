@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name='robots' content='max-image-preview:large' />
     <style>
-        img:is([ i], [sizes^="auto," i]) {
+        img:is([sizes="auto" i], [sizes^="auto," i]) {
             contain-intrinsic-size: 3000px 1500px
         }
     </style>
@@ -755,6 +755,15 @@
     <link rel="apple-touch-icon" href="./wp-content/uploads/2025/06/Logo-2-500-x-500-px-300x300.png" />
     <meta name="msapplication-TileImage" content="./wp-content/uploads/2025/06/Logo-2-500-x-500-px-300x300.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body
@@ -870,7 +879,7 @@
                             <div class="elementor-widget-container">
                                 <a href="https://www.instagram.com/podcast_tatico/">
                                     <img width="768" height="384"
-                                        src="./wp-content/uploads/2025/06/@podcast.tatico-1024x512.png"
+                                        src="./wp-content/uploads/2025/06/@podcast-tatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-15" alt="" /> </a>
                             </div>
                         </div>
@@ -927,7 +936,7 @@
                                 <a
                                     href="https://open.spotify.com/show/5arqmmohPQVB0WDPxaYFcY?si=Q5nQbKr_S5mC6fvOlLf__w">
                                     <img width="768" height="384"
-                                        src="./wp-content/uploads/2025/06/podcast.tatico-1024x512.png"
+                                        src="./wp-content/uploads/2025/06/podcast_tatico-1024x512.png"
                                         class="attachment-medium_large size-medium_large wp-image-17" alt="" /> </a>
                             </div>
                         </div>
@@ -1153,7 +1162,7 @@
 
             animatedElements.forEach(el => {
                 if (el.getAttribute('data-settings').includes('animation') && !el.getAttribute('data-settings').includes('"animation":"none"') && !el.getAttribute('data-settings').includes('"_animation":"none"')) {
-                    el.style.opacity = 0;
+                    // el.style.opacity = 0;
                     observer.observe(el);
                 }
             });
